@@ -1,5 +1,25 @@
 ## Debox
 
+### Lifecycle Note
+
+The purpose of this fork is to fix breaking changes caused by migrating to Scala 2.13 and Scala 3, and to then 
+cross-compile to those versions.  Full credit for functionality goes to the upstream project's developer(s).
+
+With all changes, tests still pass and benchmarks still demonstrate higher performance on throughput (operations per 
+second) for methods on deboxed Sets, Maps, and ArrayBuffers. Please feel free to verify the benchmarks yourself by 
+running the following in an sbt shell (note that benchmarks will take a very long time to run -- lower the number of 
+forks (the 10 after the -f parameter) to 1 to speed this up): 
+```
+project benchmark
+Jmh / run -i 20 -wi 10 -f 10 -t 1
+```
+
+Feel free to verify that tests still pass with the updated dependencies and syntax as well:
+```
+project core
+~test
+```
+
 ### Overview
 
 Debox provides specialized mutable collections that don't box.
